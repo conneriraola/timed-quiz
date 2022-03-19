@@ -1,19 +1,20 @@
-// var timerEl = document.getElementById("timer");
-// var secondsLeft = 30;
+var timerEl = document.getElementById("timer");
+var secondsLeft = 30;
+var timerInterval;
 
-// function setTime() {
-//   var timerInterval = setInterval(function() {
-//     secondsLeft--;
-//     timerEl.textContent = "Time Left: " + secondsLeft;
+function setTime() {
+  timerInterval = setInterval(function() {
+    secondsLeft--;
+    timerEl.textContent = "Time Left: " + secondsLeft;
 
-//     if(secondsLeft === 0) {
-//       clearInterval(timerInterval);
-//       alert("You're out of time!");
-//     //   sendMessage();
-//     }
-//   }, 1000);
-// }
-// setTime();
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+      alert("You're out of time! GAME OVER!");
+    //   sendMessage();
+    }
+  }, 1000);
+}
+setTime();
 
 
 const question = document.getElementById("question");
@@ -76,6 +77,7 @@ getNewQuestion = () => {
 
     if(availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         localStorage.setItem("mostRecentScore", score);
+        clearInterval(timerInterval);
         return window.location.assign("end.html");
     }
     questionCounter++;
@@ -123,7 +125,7 @@ choices.forEach( choice => {
 });
 
 incrementScore = num => {
-    score ++ 
+    score += num
     scoreText.innerText = score;
 }
 
