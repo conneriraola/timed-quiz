@@ -8,7 +8,7 @@ const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 const MAX_HIGH_SCORES = 5;
 console.log(highScores);
 
-finalScore.innerText = mostRecentScore;
+finalScore.textContent = mostRecentScore;
 
 username.addEventListener("keyup", () => {
     saveScoreBtn.disabled = !username.value;
@@ -19,7 +19,7 @@ saveHighScore = e => {
     e.preventDefault();
 
     const score = {
-        score: (Math.random() * 100),
+        score: finalScore.textContent,
         name: username.value
     };
     highScores.push(score);
@@ -27,5 +27,5 @@ saveHighScore = e => {
     highScores.splice(5);  
 
     localStorage.setItem("highScores", JSON.stringify(highScores));
-    window.location.assign("/Users/conner.iraola/bootcamp/timed-quiz/index.html");
+    window.location.assign("./index.html");
 };

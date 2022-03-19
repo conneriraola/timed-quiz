@@ -64,6 +64,7 @@ let questions = [
 ]
 
 const CORRECT_BONUS = 100;
+
 const MAX_QUESTIONS = 4;
 
 startGame = () => {
@@ -111,6 +112,10 @@ choices.forEach( choice => {
         if (classToApply === "correct") {
             incrementScore(CORRECT_BONUS);
         }
+
+        if (classToApply === "incorrect") {
+            secondsLeft -= 5;
+        }
         
 
         selectedChoice.parentElement.classList.add(classToApply);
@@ -123,6 +128,7 @@ choices.forEach( choice => {
         
     });
 });
+
 
 incrementScore = num => {
     score += num
